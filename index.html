@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#fff1f6">
+  <meta property="og:title" content="&#x6613;&#x68a6;&#x7684;&#x516d;&#x4e00;&#x5feb;&#x4e50;">
+  <meta property="og:description" content="&#x613f;&#x4f60;&#x5fc3;&#x91cc;&#x6709;&#x5149;&#xff0c;&#x65e5;&#x5b50;&#x6709;&#x7cd6;&#x3002;">
+  <title>&#x6613;&#x68a6;&#x7684;&#x516d;&#x4e00;&#x5feb;&#x4e50;</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: max(16px, env(safe-area-inset-top)) 14px max(18px, env(safe-area-inset-bottom));
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255, 143, 171, .38) 0 42px, transparent 43px),
+        radial-gradient(circle at 85% 17%, rgba(255, 209, 102, .45) 0 36px, transparent 37px),
+        radial-gradient(circle at 88% 84%, rgba(123, 223, 242, .42) 0 54px, transparent 55px),
+        linear-gradient(145deg, #ffdce9 0%, #fff6fb 48%, #d8f7f3 100%);
+      color: #4f1539;
+      font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .poster {
+      position: relative;
+      width: min(100%, 560px);
+      min-height: min(824px, calc(100vh - 32px));
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 28px;
+      padding: 36px 28px 34px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: 0 24px 64px rgba(155, 64, 112, .22);
+      isolation: isolate;
+    }
+
+    .poster::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      z-index: -1;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, .78);
+      background:
+        radial-gradient(circle at 15% 13%, #ff9fba 0 6px, transparent 7px),
+        radial-gradient(circle at 80% 15%, #ffd166 0 8px, transparent 9px),
+        radial-gradient(circle at 91% 32%, #b8e986 0 5px, transparent 6px),
+        radial-gradient(circle at 13% 78%, #ffd166 0 6px, transparent 7px),
+        radial-gradient(circle at 82% 83%, #e0fbfc 0 7px, transparent 8px);
+      opacity: .84;
+    }
+
+    .badge {
+      align-self: flex-end;
+      min-width: 108px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: #00a9ce;
+      color: #fff;
+      font: 800 17px/1 Arial, sans-serif;
+      text-align: center;
+      box-shadow: 0 8px 18px rgba(0, 169, 206, .18);
+    }
+
+    .kicker {
+      width: 100%;
+      margin: 18px 0 10px;
+      color: #127d8a;
+      font-size: clamp(18px, 4.4vw, 26px);
+      font-weight: 800;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      color: #f72585;
+      font-size: clamp(44px, 11vw, 76px);
+      line-height: 1.05;
+      letter-spacing: 0;
+      text-align: center;
+      text-shadow: 0 3px 0 rgba(255, 255, 255, .82);
+    }
+
+    .heart-panel {
+      position: relative;
+      width: min(100%, 460px);
+      aspect-ratio: 1 / .86;
+      margin: 20px auto 18px;
+      display: grid;
+      place-items: center;
+    }
+
+    .heart-shadow {
+      position: absolute;
+      left: 50%;
+      bottom: 2%;
+      width: 56%;
+      height: 11%;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background: rgba(135, 41, 91, .12);
+      filter: blur(2px);
+    }
+
+    .heart-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 18px 18px rgba(247, 37, 133, .18));
+    }
+
+    .name-block {
+      position: relative;
+      z-index: 1;
+      margin-top: 12px;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 5px 16px rgba(106, 19, 61, .28);
+    }
+
+    .name {
+      font-size: clamp(72px, 17vw, 118px);
+      font-weight: 900;
+      line-height: .92;
+    }
+
+    .roman {
+      margin-top: 8px;
+      font: 800 clamp(18px, 4vw, 24px)/1 Arial, sans-serif;
+      color: rgba(255, 255, 255, .95);
+    }
+
+    .copy {
+      width: min(100%, 458px);
+      margin-top: auto;
+      padding: 22px 22px 24px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .74);
+      box-shadow: inset 0 0 0 1px rgba(247, 37, 133, .08);
+      text-align: center;
+    }
+
+    .copy strong {
+      display: block;
+      color: #f50072;
+      font-size: clamp(22px, 5.2vw, 31px);
+      line-height: 1.36;
+      margin-bottom: 12px;
+    }
+
+    .copy p {
+      margin: 0;
+      color: #5a1741;
+      font-size: clamp(17px, 4.1vw, 22px);
+      font-weight: 800;
+      line-height: 1.72;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: #0c8fb7;
+      font-size: clamp(20px, 4.9vw, 29px);
+      font-weight: 900;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    @media (max-width: 390px) {
+      body {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .poster {
+        padding: 28px 18px 28px;
+        border-radius: 22px;
+      }
+
+      .badge {
+        min-width: 96px;
+        font-size: 15px;
+      }
+
+      .heart-panel {
+        margin-top: 14px;
+        margin-bottom: 14px;
+      }
+
+      .copy {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="poster" aria-label="&#x6613;&#x68a6;&#x6210;&#x4eba;&#x7248;&#x516d;&#x4e00;&#x6d77;&#x62a5;">
+    <div class="badge">HAPPY 6.1</div>
+    <div class="kicker">&#x9001;&#x7ed9;&#x4f9d;&#x7136;&#x613f;&#x610f;&#x8ba4;&#x771f;&#x5feb;&#x4e50;&#x7684;&#x4f60;</div>
+    <h1>&#x516d;&#x4e00;&#x5feb;&#x4e50;</h1>
+
+    <section class="heart-panel" aria-label="&#x6613;&#x68a6;&#x7231;&#x5fc3;">
+      <div class="heart-shadow"></div>
+      <svg class="heart-svg" viewBox="0 0 520 450" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="heartGradient" x1="90" y1="60" x2="430" y2="420" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ff2d75"/>
+            <stop offset=".52" stop-color="#ff5d8f"/>
+            <stop offset="1" stop-color="#ff8fab"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#heartGradient)" d="M260 414C113 290 50 220 50 135C50 72 96 32 151 32C196 32 232 58 260 100C288 58 324 32 369 32C424 32 470 72 470 135C470 220 407 290 260 414Z"/>
+        <ellipse cx="194" cy="118" rx="70" ry="39" fill="rgba(255,255,255,.2)" transform="rotate(-6 194 118)"/>
+      </svg>
+      <div class="name-block">
+        <div class="name">&#x6613;&#x68a6;</div>
+        <div class="roman">YI MENG</div>
+      </div>
+    </section>
+
+    <section class="copy">
+      <strong>&#x613f;&#x4f60;&#x5fc3;&#x91cc;&#x6709;&#x5149;&#xff0c;&#x65e5;&#x5b50;&#x6709;&#x7cd6;</strong>
+      <p>&#x505a;&#x5927;&#x4eba;&#x5f88;&#x8f9b;&#x82e6;&#xff0c;&#x4eca;&#x5929;&#x5148;&#x628a;&#x70e6;&#x607c;&#x6682;&#x505c;<br>&#x613f;&#x4f60;&#x88ab;&#x504f;&#x7231;&#xff0c;&#x4e5f;&#x4e00;&#x76f4;&#x6709;&#x4efb;&#x6027;&#x7684;&#x5e95;&#x6c14;</p>
+    </section>
+
+    <div class="footer">&#x7ae5;&#x5fc3;&#x4e0d;&#x5fc5;&#x9000;&#x573a;<br>&#x5feb;&#x4e50;&#x6c38;&#x8fdc;&#x4f5c;&#x6570;</div>
+  </main>
+</body>
+</html>
